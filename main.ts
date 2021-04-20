@@ -5,6 +5,7 @@ enum ActionKind {
 }
 namespace SpriteKind {
     export const yeet = SpriteKind.create()
+    export const powerup = SpriteKind.create()
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     anim = animation.createAnimation(ActionKind.Walking, 100)
@@ -46,12 +47,6 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `)
     animation.setAction(mySprite, ActionKind.Walking)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.yeet, function (sprite, otherSprite) {
-    canEatEnemy = true
-    otherSprite.destroy()
-    pause(5000)
-    canEatEnemy = false
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     anim = animation.createAnimation(ActionKind.Walking, 100)
@@ -198,27 +193,30 @@ function createFood () {
     tiles.placeOnRandomTile(yumyum, assets.tile`myTile`)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    if (info.score() == 10) {
-        game.over(true)
-    } else {
-        otherSprite.destroy()
-        info.changeScoreBy(1)
-    }
+    otherSprite.destroy()
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.powerup, function (sprite, otherSprite) {
+    canEatEnemy = true
+    otherSprite.destroy()
+    pause(5000)
+    canEatEnemy = false
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (canEatEnemy == true) {
         otherSprite.destroy()
     } else {
         info.changeLifeBy(-1)
-        tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass2)
+        tiles.placeOnRandomTile(mySprite, assets.tile`myTile`)
     }
 })
+let Power_Up: Sprite = null
+let canEatEnemy = false
 let yumyum: Sprite = null
 let Inky: Sprite = null
 let Blinky: Sprite = null
 let Pinky: Sprite = null
 let clyde: Sprite = null
-let canEatEnemy = false
 let anim: animation.Animation = null
 let mySprite: Sprite = null
 mySprite = sprites.create(img`
@@ -247,24 +245,28 @@ info.startCountdown(30)
 for (let index = 0; index < 30; index++) {
     createFood()
 }
-let Power_Up = sprites.create(img`
-    . . . . . . . 6 . . . . . . . . 
-    . . . . . . 8 6 6 . . . 6 8 . . 
-    . . . e e e 8 8 6 6 . 6 7 8 . . 
-    . . e 2 2 2 2 e 8 6 6 7 6 . . . 
-    . e 2 2 4 4 2 7 7 7 7 7 8 6 . . 
-    . e 2 4 4 2 6 7 7 7 6 7 6 8 8 . 
-    e 2 4 5 2 2 6 7 7 6 2 7 7 6 . . 
-    e 2 4 4 2 2 6 7 6 2 2 6 7 7 6 . 
-    e 2 4 2 2 2 6 6 2 2 2 e 7 7 6 . 
-    e 2 4 2 2 4 2 2 2 4 2 2 e 7 6 . 
-    e 2 4 2 2 2 2 2 2 2 2 2 e c 6 . 
-    e 2 2 2 2 2 2 2 4 e 2 e e c . . 
-    e e 2 e 2 2 4 2 2 e e e c . . . 
-    e e e e 2 e 2 2 e e e c . . . . 
-    e e e 2 e e c e c c c . . . . . 
-    . c c c c c c c . . . . . . . . 
-    `, SpriteKind.yeet)
-tiles.placeOnRandomTile(Power_Up, sprites.castle.tileGrass2)
-createEnemies()
+for (let index = 0; index < 1; index++) {
+    createEnemies()
+}
 info.setLife(3)
+game.onUpdateInterval(5000, function () {
+    Power_Up = sprites.create(img`
+        . . . . . . . 6 . . . . . . . . 
+        . . . . . . 8 6 6 . . . 6 8 . . 
+        . . . e e e 8 8 6 6 . 6 7 8 . . 
+        . . e 2 2 2 2 e 8 6 6 7 6 . . . 
+        . e 2 2 4 4 2 7 7 7 7 7 8 6 . . 
+        . e 2 4 4 2 6 7 7 7 6 7 6 8 8 . 
+        e 2 4 5 2 2 6 7 7 6 2 7 7 6 . . 
+        e 2 4 4 2 2 6 7 6 2 2 6 7 7 6 . 
+        e 2 4 2 2 2 6 6 2 2 2 e 7 7 6 . 
+        e 2 4 2 2 4 2 2 2 4 2 2 e 7 6 . 
+        e 2 4 2 2 2 2 2 2 2 2 2 e c 6 . 
+        e 2 2 2 2 2 2 2 4 e 2 e e c . . 
+        e e 2 e 2 2 4 2 2 e e e c . . . 
+        e e e e 2 e 2 2 e e e c . . . . 
+        e e e 2 e e c e c c c . . . . . 
+        . c c c c c c c . . . . . . . . 
+        `, SpriteKind.powerup)
+    tiles.placeOnRandomTile(Power_Up, assets.tile`myTile`)
+})
