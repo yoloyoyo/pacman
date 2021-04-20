@@ -95,26 +95,86 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.setAction(mySprite, ActionKind.Walking)
 })
 function createEnemies () {
-    badguy = sprites.create(img`
+    clyde = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . 1 1 1 1 . . . . . . 
-        . . . . . 1 1 1 1 1 1 . . . . . 
-        . . . . 1 1 1 1 1 1 1 1 . . . . 
-        . . . . 1 1 f 1 1 f 1 1 . . . . 
-        . . . . 1 1 1 1 1 1 1 1 . . . . 
-        . . . . 1 1 1 1 1 1 1 1 . . . . 
-        . . . . 1 1 1 1 1 1 1 1 . . . . 
-        . . . . 1 1 1 1 1 1 1 1 . . . . 
-        . . . . 1 1 1 1 1 1 1 1 . . . . 
-        . . . . 1 1 1 1 1 1 1 1 . . . . 
-        . . . . 1 1 1 1 1 1 1 1 . . . . 
+        . . . . . . 4 4 4 4 . . . . . . 
+        . . . . . 4 4 4 4 4 4 . . . . . 
+        . . . . 4 1 1 4 1 1 4 4 . . . . 
+        . . . . 4 f 1 4 f 1 4 4 . . . . 
+        . . . . 4 1 1 4 1 1 4 4 . . . . 
+        . . . . 4 4 4 4 4 4 4 4 . . . . 
+        . . . . 4 4 4 4 4 4 4 4 . . . . 
+        . . . . 4 4 4 4 4 4 4 4 . . . . 
+        . . . . 4 4 4 4 4 4 4 4 . . . . 
+        . . . . 4 4 4 4 4 4 4 4 . . . . 
+        . . . . 4 . 4 . 4 . 4 4 . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(badguy, sprites.castle.tileGrass2)
-    badguy.follow(mySprite, 50)
+    tiles.placeOnRandomTile(clyde, assets.tile`myTile`)
+    clyde.follow(mySprite, 50)
+    Pinky = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . 3 3 3 3 . . . . . . 
+        . . . . . 3 3 3 3 3 3 . . . . . 
+        . . . . 3 1 1 3 1 1 3 3 . . . . 
+        . . . . 3 f 1 3 f 1 3 3 . . . . 
+        . . . . 3 1 1 3 1 1 3 3 . . . . 
+        . . . . 3 3 3 3 3 3 3 3 . . . . 
+        . . . . 3 3 3 3 3 3 3 3 . . . . 
+        . . . . 3 3 3 3 3 3 3 3 . . . . 
+        . . . . 3 3 3 3 3 3 3 3 . . . . 
+        . . . . 3 3 3 3 3 3 3 3 . . . . 
+        . . . . 3 . 3 . 3 . 3 3 . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Pinky, assets.tile`myTile`)
+    Pinky.follow(mySprite, 50)
+    Blinky = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . 2 2 2 2 . . . . . . 
+        . . . . . 2 2 2 2 2 2 . . . . . 
+        . . . . 2 1 1 2 1 1 2 2 . . . . 
+        . . . . 2 f 1 2 f 1 2 2 . . . . 
+        . . . . 2 1 1 2 1 1 2 2 . . . . 
+        . . . . 2 2 2 2 2 2 2 2 . . . . 
+        . . . . 2 2 2 2 2 2 2 2 . . . . 
+        . . . . 2 2 2 2 2 2 2 2 . . . . 
+        . . . . 2 2 2 2 2 2 2 2 . . . . 
+        . . . . 2 2 2 2 2 2 2 2 . . . . 
+        . . . . 2 . 2 . 2 . 2 2 . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Blinky, assets.tile`myTile`)
+    Blinky.follow(mySprite, 50)
+    Inky = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . 9 9 9 9 . . . . . . 
+        . . . . . 9 9 9 9 9 9 . . . . . 
+        . . . . 9 1 1 9 1 1 9 9 . . . . 
+        . . . . 9 f 1 9 f 1 9 9 . . . . 
+        . . . . 9 1 1 9 1 1 9 9 . . . . 
+        . . . . 9 9 9 9 9 9 9 9 . . . . 
+        . . . . 9 9 9 9 9 9 9 9 . . . . 
+        . . . . 9 9 9 9 9 9 9 9 . . . . 
+        . . . . 9 9 9 9 9 9 9 9 . . . . 
+        . . . . 9 9 9 9 9 9 9 9 . . . . 
+        . . . . 9 . 9 . 9 . 9 9 . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(Inky, assets.tile`myTile`)
+    Inky.follow(mySprite, 50)
 }
 function createFood () {
     yumyum = sprites.create(img`
@@ -124,18 +184,18 @@ function createFood () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . 1 1 1 1 1 . . . . . . 
-        . . . . . 1 1 1 1 1 . . . . . . 
-        . . . . . 1 1 1 1 1 . . . . . . 
-        . . . . . 1 1 1 1 1 . . . . . . 
-        . . . . . 1 1 1 1 1 . . . . . . 
+        . . . . . . . d d d . . . . . . 
+        . . . . . . . d d d . . . . . . 
+        . . . . . . . d d d . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Food)
-    tiles.placeOnRandomTile(yumyum, sprites.castle.tileGrass2)
+    tiles.placeOnRandomTile(yumyum, assets.tile`myTile`)
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     if (info.score() == 10) {
@@ -154,7 +214,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
 })
 let yumyum: Sprite = null
-let badguy: Sprite = null
+let Inky: Sprite = null
+let Blinky: Sprite = null
+let Pinky: Sprite = null
+let clyde: Sprite = null
 let canEatEnemy = false
 let anim: animation.Animation = null
 let mySprite: Sprite = null
@@ -177,24 +240,7 @@ mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
-tiles.setTilemap(tiles.createTilemap(hex`1000100002020202020202020202020202020202020202010202020202010101010101020202020102020202020102020202010202010101010102020201020202020202020202020201020201010101020202020202020202010202020201010202020202020101010101010202020101010102020202020201020202020202010202020202020202010202020202020102020202020202010101010101010101010102020202020201020201020202010202020202020202010202010202020102020202020101010102020202020201020202020202020201020202020202020202020202020202010101010101020202020202020202020202020202020202020202`, img`
-    . . . . . . . . . . . . . . . . 
-    . . . 2 . . . . . 2 2 2 2 2 2 . 
-    . . . 2 . . . . . 2 . . . . 2 . 
-    . 2 2 2 2 2 . . . 2 . . . . . . 
-    . . . . . 2 . . 2 2 2 2 . . . . 
-    . . . . . 2 . . . . 2 2 . . . . 
-    . . 2 2 2 2 2 2 . . . 2 2 2 2 . 
-    . . . . . 2 . . . . . . 2 . . . 
-    . . . . . 2 . . . . . . 2 . . . 
-    . . . . 2 2 2 2 2 2 2 2 2 2 2 . 
-    . . . . . 2 . . 2 . . . 2 . . . 
-    . . . . . 2 . . 2 . . . 2 . . . 
-    . . 2 2 2 2 . . . . . . 2 . . . 
-    . . . . . 2 . . . . . . . . . . 
-    . . . . . 2 2 2 2 2 2 . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, [myTiles.tile0,sprites.castle.tilePath5,sprites.castle.tileGrass2], TileScale.Sixteen))
+tiles.setTilemap(tilemap`level1`)
 tiles.placeOnRandomTile(mySprite, sprites.castle.tileGrass2)
 scene.cameraFollowSprite(mySprite)
 info.startCountdown(30)
