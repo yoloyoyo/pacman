@@ -266,7 +266,5 @@ let Power_Up = sprites.create(img`
     . c c c c c c c . . . . . . . . 
     `, SpriteKind.yeet)
 tiles.placeOnRandomTile(Power_Up, sprites.castle.tileGrass2)
-for (let index = 0; index < 4; index++) {
-    createEnemies()
-}
+createEnemies()
 info.setLife(3)
